@@ -1,10 +1,15 @@
 {
-  "dependencies": {
-    "express": "^4.15.3"
-  },
   "scripts": {
     "serve": "node ./app.js",
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha --recursive"
+    "test": "NODE_ENV=test VCR_MODE=cache ./node_modules/mocha/bin/mocha --recursive",
+    "fetch_neos": "./node_modules/jake/bin/cli.js -f ./jakefile.js fetch_neos"
+  },
+  "dependencies": {
+    "express": "^4.15.3",
+    "isomorphic-fetch": "^2.2.1",
+    "jake": "^8.0.15",
+    "moment": "^2.18.1",
+    "moment-range": "^3.0.3"
   },
   "devDependencies": {
     "chai": "^4.0.2",

@@ -1,6 +1,14 @@
-const fetch = require('fetch');
+const Nasa = require('../services/nasa');
 
-const url    = 'https://api.nasa.gov/rest/v1/feed';
-const apiKey = process.env.NASA_KEY;
+task('fetch_neos', { async: true }, () => {
+  Nasa.fetchUpdatedNeos().then(results => {
+    console.log(`${results.element_count} records have been retrieved from NASA.`);
 
-fetch(url, { body: { end_date:  } });
+    // TODO: DB action here:
+    
+    complete();
+  }).catch(error => {
+    console.log('\n ', error, '\n\n');
+    complete();
+  });
+});
