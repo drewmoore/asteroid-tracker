@@ -3,7 +3,7 @@ const moment = require('moment');
 const fetch  = require('isomorphic-fetch');
 
 // Set common values to be used by all future endpoints.
-const baseUrl = 'https://api.nasa.gov/neo/rest/v1'
+const baseUrl = 'https://api.nasa.gov/neo/rest/v1';
 const apiKey  = process.env.NASA_KEY;
 
 class Nasa {

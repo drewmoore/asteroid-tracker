@@ -7,4 +7,6 @@ This Web API allows users to search NASA's database for objects close to Earth's
 
 User needs nasa env variable
 
+optional MONGO_PORT env var
+
 jake task for fetch neos
