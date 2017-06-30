@@ -11,7 +11,7 @@ const errorHandler = (error, complete) => {
 task('fetch_neos', { async: true }, () => {
   Nasa.fetchUpdatedNeos().then(results => {
     console.log(`\n${results.element_count} records have been retrieved from NASA.`);
-    Neo.bulkUpsert(results.near_earth_objects).then(result => {
+    Neo.bulkUpsertFromNasa(results.near_earth_objects).then(result => {
       console.log(`${result.nUpserted} records have been upserted.`);
       complete();
     }).catch(error => errorHandler(error, complete));

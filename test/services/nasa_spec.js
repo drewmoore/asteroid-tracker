@@ -8,7 +8,9 @@ describe('Nasa', () => {
     let results;
 
     beforeEach(done => {
-      Nasa.fetchUpdatedNeos().then(json => { results = json; done(); });
+      Nasa.fetchUpdatedNeos()
+        .then(json => { results = json; done(); })
+        .catch(error => done(error));
     });
 
     it('should only feature neos with updates in the past few days', () => {

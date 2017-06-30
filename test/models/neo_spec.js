@@ -1,12 +1,17 @@
 const expect = require('chai').expect;
 const fs     = require('fs');
 const path   = require('path');
-const db     = require('../../models/lib/mongoose').connection.db;
+const db     = require('../../config/mongoose').connection.db;
 const Neo    = require('../../models/neo');
 
 describe('Neo', () => {
   beforeEach((done) => {
     // Drop the database before each test to clear test data.
+    db.dropDatabase().then(() => done());
+  });
+
+  afterEach((done) => {
+    // Drop the database after each test to clear test data.
     db.dropDatabase().then(() => done());
   });
 
@@ -44,7 +49,7 @@ describe('Neo', () => {
     });
   });
 
-  describe('Bulk Upsert', () => {
+  describe('Bulk Upsert From Nasa', () => {
     let apiNeos;
     let result;
 
@@ -54,7 +59,7 @@ describe('Neo', () => {
         path.join(__dirname, '..', 'sample_responses', 'nasa_feed.json')
       );
       apiNeos = JSON.parse(sampleResponsePath, 'utf8').near_earth_objects;
-      Neo.bulkUpsert(apiNeos).then(res => {
+      Neo.bulkUpsertFromNasa(apiNeos).then(res => {
         result = res;
         done();
       }).catch((error) => done(error));

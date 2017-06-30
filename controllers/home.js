@@ -1,3 +1,7 @@
-module.exports = {
-  index: (req, res) => { res.json({ hello: 'world' }); }
-};
+class HomeController {
+  static index(_request, response) {
+    response.json({ hello: 'world' });
+  }
+}
+
+module.exports = HomeController;
